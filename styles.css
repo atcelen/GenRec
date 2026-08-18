@@ -802,9 +802,6 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .pipeline-plate {
   margin-top: 56px;
-  /* Uniformly dims the plate and the figure's baked-in white together,
-     so the pure-white background reads as soft paper-gray with no seam. */
-  filter: brightness(0.87);
 }
 .figure-caption {
   margin: 16px 2px 0;
