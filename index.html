@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GenRec: Knowing Where to Reconstruct and Where to Generate</title>
+  <meta name="description" content="GenRec: 3D-aware generative novel-view synthesis that splits reconstruction from generation. Project page." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav id="site-nav" class="site-nav" aria-label="Sections">
+    <div class="container site-nav-inner">
+      <a class="site-nav-brand" href="#">GenRec</a>
+      <div class="site-nav-links">
+        <a href="#method">Method</a>
+        <a href="#section-a">Qualitative</a>
+        <a href="#results">Results</a>
+        <a href="#section-d">Ablation</a>
+        <a href="#section-c">3DGS</a>
+        <a href="#bibtex">BibTeX</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <span class="pill" aria-label="Venue">arXiv 2026</span>
+
+      <h1 class="title">
+        GenRec: Knowing Where to Reconstruct and Where to Generate
+      </h1>
+
+      <ul class="authors" aria-label="Authors">
+        <li><a class="author-name" href="https://github.com/atcelen" target="_blank" rel="noopener">Ata Çelen</a><sup>1</sup></li>
+        <li><a class="author-name" href="https://crepejung00.github.io/" target="_blank" rel="noopener">Jaewoo Jung</a><sup>1,4</sup></li>
+        <li><a class="author-name" href="https://federicotombari.github.io/" target="_blank" rel="noopener">Federico Tombari</a><sup>2</sup></li>
+        <li><a class="author-name" href="https://people.inf.ethz.ch/marc.pollefeys/" target="_blank" rel="noopener">Marc Pollefeys</a><sup>1,3</sup></li>
+        <li><a class="author-name" href="https://sunghwanhong.github.io/" target="_blank" rel="noopener">Sunghwan Hong</a><sup>1</sup></li>
+        <li><a class="author-name" href="https://m-niemeyer.github.io/" target="_blank" rel="noopener">Michael Niemeyer</a><sup>2</sup></li>
+        <li><a class="author-name" href="https://cvg.ethz.ch/team/Dr-Daniel-Bela-Barath" target="_blank" rel="noopener">Daniel Barath</a><sup>1,2</sup></li>
+      </ul>
+      <p class="affil">
+        <span><sup>1</sup>&nbsp;ETH Zürich</span>
+        <span class="affil-sep" aria-hidden="true">·</span>
+        <span><sup>2</sup>&nbsp;Google</span>
+        <span class="affil-sep" aria-hidden="true">·</span>
+        <span><sup>3</sup>&nbsp;Microsoft</span>
+        <span class="affil-sep" aria-hidden="true">·</span>
+        <span><sup>4</sup>&nbsp;KAIST</span>
+      </p>
+
+      <div class="actions" aria-label="Resources">
+        <a class="action" href="#" target="_blank" rel="noopener" aria-label="Paper on arXiv">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="16" y2="17"/>
+            <line x1="8" y1="9" x2="10" y2="9"/>
+          </svg>
+          <span>Paper</span>
+        </a>
+        <a class="action" href="#" target="_blank" rel="noopener" aria-label="Code on GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          <span>Code</span>
+        </a>
+        <a class="action" href="#bibtex" aria-label="BibTeX citation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+            <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+          </svg>
+          <span>BibTeX</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="abstract" class="section abstract-video-section">
+      <video class="abstract-bg-video" autoplay muted loop playsinline>
+        <source src="assets/abstract_video.mp4" type="video/mp4" />
+      </video>
+      <div class="abstract-overlay"></div>
+      <div class="container narrow">
+        <p class="eyebrow">Abstract</p>
+        <h2 class="serif-h2">Splitting reconstruction from generation.</h2>
+        <p class="prose">
+          Generative novel view synthesis from sparse input images is rarely all reconstruction or all generation: pixels visible in some source view have a unique correct value modulated only by view-dependent shading, while pixels in disocclusions or beyond the captured volume admit a distribution of plausible completions. Existing generative novel-view-synthesis methods conflate these regimes under a single uniform loss, blurring the line between geometric fidelity and creative hallucinations even when scene geometry is injected through warped point clouds or projected depth.
+        </p>
+        <p class="prose">
+          We introduce GenRec, a multi-view flow matching model that builds the reconstruction&ndash;generation split directly into its architecture, supervision, and gradient flow. Guided by an observation mask derived from the source cameras and a monocular depth estimator, a flow matching backbone jointly denoises RGB and scene-coordinate maps across all target views, while a pixel-space refinement stage restores high-frequency detail on observed pixels; the same mask gates supervision so regression signals do not contaminate the generative prior.
+        </p>
+        <p class="prose">
+          Across RealEstate10K, DL3DV-10K, and Mip-NeRF&nbsp;360, in both single-view extrapolation and two-view interpolation, GenRec attains the best reconstruction fidelity in observed regions while also surpassing purely generative baselines on perceptual quality in unobserved ones, showing the effectiveness of our approach.
+        </p>
+      </div>
+    </section>
+
+    <section id="method" class="section">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Method</p>
+          <h2 class="serif-h2">One observation mask, two specialized pathways.</h2>
+          <p class="section-subtitle">
+            A novel view is rarely all generation or all reconstruction; it is a combination of both.
+            GenRec builds this split directly into its architecture, supervision, and gradient flow,
+            governed by a per-pixel observation mask derived from the source cameras and a monocular depth estimator.
+          </p>
+        </header>
+
+        <div class="framework-pair">
+          <figure class="figure-plate figure-plate-dark framework-card">
+            <figcaption class="figure-tag">Prior generative reconstruction</figcaption>
+            <img src="assets/figures/framework_prior.png" alt="Prior methods: warped conditioning feeds a multi-view generative model trained with one uniform generative loss over all pixels" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="figure-plate figure-plate-dark framework-card framework-card-ours">
+            <figcaption class="figure-tag figure-tag-accent">GenRec</figcaption>
+            <img src="assets/figures/framework_ours.png" alt="GenRec: an observation mask routes observed pixels to a pixel-space reconstruction module and unobserved pixels to the generative backbone, with separate losses" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+        <p class="figure-caption">
+          Prior methods condition multi-view image or video models on warped point clouds or Pl&uuml;cker rays,
+          supervising all output pixels with one generative loss regardless of source coverage. GenRec factors
+          the task by an observation mask: a generative backbone predicts every pixel, and a pixel-space
+          reconstruction module refines the observed ones under a dedicated loss. The two pathways share
+          neither parameters nor gradients, preserving the generative prior in unobserved regions.
+        </p>
+
+        <figure class="figure-plate pipeline-plate">
+          <img src="assets/figures/pipeline.png" alt="GenRec pipeline: warped renders and observation masks condition a multi-view flow matching backbone that jointly denoises RGB and scene-coordinate latents; a reconstruction branch refines observed pixels via sparse 3D attention" decoding="async" />
+        </figure>
+        <div class="legend-chips" role="presentation">
+          <span class="legend-chip"><b>I</b> Multi-view flow-matching backbone</span>
+          <span class="legend-chip"><b>II</b> Pixel-space reconstruction branch</span>
+        </div>
+        <p class="figure-caption">
+          Given posed input views and target poses, monocular depth and forward warping produce per-target
+          observation masks and warped renders. These condition a <em>(I) multi-view flow matching backbone</em>,
+          which jointly denoises RGB and scene-coordinate latents through cross-view and cross-modal attention.
+          A <em>(II) reconstruction branch</em> then refines only the observed pixels via sparse 3D attention
+          guided by the predicted scene coordinates, while the observation mask gates gradients so the
+          generative prior is preserved in unobserved regions.
+        </p>
+
+      </div>
+    </section>
+
+    <section id="section-a" class="section">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Qualitative</p>
+          <h2 class="serif-h2">Single-View Extrapolation</h2>
+          <p class="section-subtitle">
+            We showcase qualitative results from our model against GEN3C as our
+            baseline in the single-view extrapolation setting. Drag the slider
+            to cycle through different target views.
+          </p>
+        </header>
+
+        <div class="carousel-group">
+          <h3 class="carousel-group-title">RealEstate10K</h3>
+          <div class="carousel" id="carousel-a-re10k">
+            <div class="carousel-viewport">
+              <div id="section-a-re10k-rows" class="rows"></div>
+            </div>
+            <div class="carousel-nav">
+              <button class="carousel-arrow carousel-prev" aria-label="Previous scene" data-carousel="carousel-a-re10k">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <span class="carousel-indicator" id="carousel-a-re10k-indicator"></span>
+              <button class="carousel-arrow carousel-next" aria-label="Next scene" data-carousel="carousel-a-re10k">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-group">
+          <h3 class="carousel-group-title">DL3DV-10K</h3>
+          <div class="carousel" id="carousel-a-dl3dv">
+            <div class="carousel-viewport">
+              <div id="section-a-dl3dv-rows" class="rows"></div>
+            </div>
+            <div class="carousel-nav">
+              <button class="carousel-arrow carousel-prev" aria-label="Previous scene" data-carousel="carousel-a-dl3dv">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <span class="carousel-indicator" id="carousel-a-dl3dv-indicator"></span>
+              <button class="carousel-arrow carousel-next" aria-label="Next scene" data-carousel="carousel-a-dl3dv">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="section">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Quantitative</p>
+          <h2 class="serif-h2">Evaluation across benchmarks and settings.</h2>
+          <p class="section-subtitle">
+            Across RealEstate10K, DL3DV-10K, and the out-of-distribution Mip-NeRF&nbsp;360, GenRec attains the
+            best score on every column, from reconstruction fidelity in observed regions to perceptual quality
+            in unobserved ones, while running in ~10 seconds per scene, two orders of magnitude faster than
+            the strongest baseline. Best value per column is highlighted.
+          </p>
+        </header>
+
+        <div id="results-tabs" class="results-tabs" role="tablist" aria-label="Benchmark"></div>
+        <div id="results-table-host" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="section-d" class="section">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Ablation</p>
+          <h2 class="serif-h2">Effect of the reconstruction branch</h2>
+          <p class="section-subtitle">
+            The pixel-space refinement stage restores the high-frequency detail that the latent generative
+            path discards. Drag the sliders to compare output with and without it, on the full frame
+            and on a zoomed crop.
+          </p>
+        </header>
+
+        <div class="col-headers ablation-col-headers" role="presentation">
+          <div class="col-header">Target view</div>
+          <div class="col-header">Full frame · with / without refinement</div>
+          <div class="col-header">Zoom</div>
+        </div>
+
+        <div class="carousel" id="carousel-d">
+          <div class="carousel-viewport">
+            <div id="section-d-rows" class="rows"></div>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-arrow carousel-prev" aria-label="Previous scene" data-carousel="carousel-d">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span class="carousel-indicator" id="carousel-d-indicator"></span>
+            <button class="carousel-arrow carousel-next" aria-label="Next scene" data-carousel="carousel-d">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="component-ablation-host" class="component-ablation"></div>
+      </div>
+    </section>
+
+    <section id="section-c" class="section">
+      <div class="container">
+        <header class="section-header section-header-flex">
+          <div>
+            <p class="eyebrow">3D Reconstruction</p>
+            <h2 class="serif-h2">Single-View 3DGS Reconstruction</h2>
+            <p class="section-subtitle">
+              3D Gaussian Splatting reconstructions built on GenRec's generations from a single input view.
+              Drag the bar beneath each row to scrub through the video.
+            </p>
+          </div>
+          <button id="play-all-c" class="ghost-btn" type="button" aria-pressed="false">
+            Pause all
+          </button>
+        </header>
+
+        <div class="col-headers section-c-col-headers" role="presentation">
+          <div class="col-header">Input</div>
+          <div class="col-header">3DGS Render</div>
+        </div>
+
+        <div class="carousel" id="carousel-c">
+          <div class="carousel-viewport">
+            <div id="section-c-rows" class="rows"></div>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-arrow carousel-prev" aria-label="Previous scene" data-carousel="carousel-c">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span class="carousel-indicator" id="carousel-c-indicator"></span>
+            <button class="carousel-arrow carousel-next" aria-label="Next scene" data-carousel="carousel-c">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bibtex" class="section">
+      <div class="container narrow">
+        <header class="section-header">
+          <p class="eyebrow">Citation</p>
+          <h2 class="serif-h2">BibTeX</h2>
+        </header>
+        <div class="bibtex-block">
+          <button class="ghost-btn bibtex-copy" type="button" data-target="bibtex-snippet" aria-label="Copy BibTeX to clipboard">Copy</button>
+<pre id="bibtex-snippet"><code>@article{celen2026genrec,
+  title   = {GenRec: Knowing Where to Reconstruct and Where to Generate},
+  author  = {Çelen, Ata and Jung, Jaewoo and Tombari, Federico and Pollefeys, Marc and Hong, Sunghwan and Niemeyer, Michael and Barath, Daniel},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-line">
+        Acknowledgements. We thank our collaborators and reviewers for their feedback.
+      </p>
+      <p class="footer-line muted">
+        Page template inspired by Nerfies. Source available with the code.
+      </p>
+    </div>
+  </footer>
+
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
