@@ -1,0 +1,17 @@
+{
+  "architectures": [
+    "RayMapEncoder"
+  ],
+  "image_size": 512,
+  "in_channel": 6,
+  "inter_dims": 384,
+  "model_type": "ray_map_encoder",
+  "out_channel": 16,
+  "patch_size": 8,
+  "torch_dtype": "float16",
+  "transformer_dim_head": 64,
+  "transformer_heads": 6,
+  "transformer_layers": 1,
+  "transformer_mlp_dim": 384,
+  "transformers_version": "4.51.3"
+}

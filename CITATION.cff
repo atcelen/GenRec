@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "GenRec: Knowing Where to Reconstruct and Where to Generate"
+authors:
+  - family-names: "Çelen"
+    given-names: "Ata"
+  - family-names: "Jung"
+    given-names: "Jaewoo"
+  - family-names: "Tombari"
+    given-names: "Federico"
+  - family-names: "Pollefeys"
+    given-names: "Marc"
+  - family-names: "Hong"
+    given-names: "Sunghwan"
+  - family-names: "Niemeyer"
+    given-names: "Michael"
+  - family-names: "Barath"
+    given-names: "Daniel"
+repository-code: "https://github.com/atcelen/GenRec"
+license: Apache-2.0
+preferred-citation:
+  type: article
+  title: "GenRec: Knowing Where to Reconstruct and Where to Generate"
+  year: 2026
+  authors:
+    - family-names: "Çelen"
+      given-names: "Ata"
+    - family-names: "Jung"
+      given-names: "Jaewoo"
+    - family-names: "Tombari"
+      given-names: "Federico"
+    - family-names: "Pollefeys"
+      given-names: "Marc"
+    - family-names: "Hong"
+      given-names: "Sunghwan"
+    - family-names: "Niemeyer"
+      given-names: "Michael"
+    - family-names: "Barath"
+      given-names: "Daniel"
+  # TODO(release): add the arXiv identifier once available, e.g.
+  # identifiers:
+  #   - type: other
+  #     value: "arXiv:XXXX.XXXXX"
