@@ -16,9 +16,8 @@
   <sup>1</sup>ETH Zürich&nbsp;&nbsp;&nbsp;<sup>2</sup>Google&nbsp;&nbsp;&nbsp;<sup>3</sup>Microsoft&nbsp;&nbsp;&nbsp;<sup>4</sup>KAIST
 </p>
 
-<!-- TODO(release): fill in the real arXiv id and project-page URL below. -->
 <h3 align="center">
-  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="arXiv"></a>&nbsp;
+  <a href="https://arxiv.org/abs/2608.17832"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="arXiv"></a>&nbsp;
   <a href="https://atcelen.github.io/GenRec/"><img src="https://img.shields.io/badge/Project-Page-1f8acb.svg" alt="Project Page"></a>&nbsp;
   <a href="https://huggingface.co/atcelen/GenRec"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-Model-ffce00.svg" alt="HuggingFace"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License"></a>
@@ -207,11 +206,11 @@ Depth Anything 3) and the training datasets, and are intended for research use o
 
 ## Citation
 
-<!-- TODO(release): replace with the final title, author list, and arXiv eprint. -->
 ```bibtex
-@misc{genrec,
-  title  = {GenRec: Knowing Where to Reconstruct and Where to Generate},
-  author = {Çelen, Ata and Jung, Jaewoo and Tombari, Federico and Pollefeys, Marc and Hong, Sunghwan and Niemeyer, Michael and Barath, Daniel},
-  year   = {2026}
+@article{celen2026genrec,
+  title   = {GenRec: Knowing Where to Reconstruct and Where to Generate},
+  author  = {Çelen, Ata and Jung, Jaewoo and Tombari, Federico and Pollefeys, Marc and Hong, Sunghwan and Niemeyer, Michael and Barath, Daniel},
+  journal = {arXiv preprint arXiv:2608.17832},
+  year    = {2026}
 }
 ```

@@ -69,11 +69,10 @@ dev = ["black==24.*", "isort==5.*", "flake8==7.*", "pre-commit"]
 warp = ["warp-lang"]
 
 [project.urls]
-# TODO(release): fill in real URLs.
 Homepage = "https://atcelen.github.io/GenRec/"
 Repository = "https://github.com/atcelen/GenRec"
 Model = "https://huggingface.co/atcelen/GenRec"
-Paper = "https://arxiv.org/abs/XXXX.XXXXX"
+Paper = "https://arxiv.org/abs/2608.17832"
 
 [project.scripts]
 genrec-infer = "genrec.cli.inference:main"

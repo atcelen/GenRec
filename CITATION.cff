@@ -37,7 +37,7 @@ preferred-citation:
       given-names: "Michael"
     - family-names: "Barath"
       given-names: "Daniel"
-  # TODO(release): add the arXiv identifier once available, e.g.
-  # identifiers:
-  #   - type: other
-  #     value: "arXiv:XXXX.XXXXX"
+  identifiers:
+    - type: other
+      value: "arXiv:2608.17832"
+  url: "https://arxiv.org/abs/2608.17832"
