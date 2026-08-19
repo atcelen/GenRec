@@ -13,4 +13,4 @@ INPUT_DIR=assets/examples bash scripts/run_inference.sh
 
 The committed `example_*.png` images are synthetic **placeholders** so the
 quick-start command runs end to end — swap in real photos for meaningful
-results. (TODO(release): replace with 1–2 real sample photos before announcing.)
+results.
