@@ -10,7 +10,7 @@
   <a href="https://cvg.ethz.ch/team/Dr-Daniel-Bela-Barath">Daniel Barath</a><sup>1,2</sup>&nbsp;&nbsp;
 </p>
 
-<p align="center"><b>Arxiv 2026</b></p>
+<p align="center"><b>NeurIPS 2026</b></p>
 
 <p align="center">
   <sup>1</sup>ETH Zürich&nbsp;&nbsp;&nbsp;<sup>2</sup>Google&nbsp;&nbsp;&nbsp;<sup>3</sup>Microsoft&nbsp;&nbsp;&nbsp;<sup>4</sup>KAIST
